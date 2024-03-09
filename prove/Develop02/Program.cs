@@ -16,14 +16,14 @@ class Program
             Console.WriteLine("4. Load the journal from a file");
             Console.WriteLine("5. Exit");
             Console.WriteLine("");
-            Console.Write("Enter your choice: ");
-            int choice = int.Parse(Console.ReadLine());
+            Console.Write("What would you like to do?: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
 
             switch (choice)
             {
                 case 1:
                     string prompt = promptGenerator.GetRandomPrompt();
-                    Console.WriteLine($"Prompt: {prompt}");
+                    Console.WriteLine($"{prompt}");
                     
                     Console.Write("Enter your response: ");
                     string entryText = Console.ReadLine();
