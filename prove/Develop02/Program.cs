@@ -15,9 +15,9 @@ class Program
             Console.WriteLine("3. Save the journal to a file");
             Console.WriteLine("4. Load the journal from a file");
             Console.WriteLine("5. Exit");
-
+            Console.WriteLine("");
             Console.Write("Enter your choice: ");
-            int choice = Convert.ToInt32(Console.ReadLine());
+            int choice = int.Parse(Console.ReadLine());
 
             switch (choice)
             {
