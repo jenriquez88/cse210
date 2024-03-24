@@ -1,22 +1,18 @@
 class ListingActivity : Activity
 {
     protected List<string> _prompts;
-
     public ListingActivity(string name, string description, List<string> prompts) : base(name, description)
     {
         _prompts = prompts;
     }
-
     public override void DisplayStartingMessage()
     {
         base.DisplayStartingMessage();
     }
-
     public override void DisplayEndingMessage()
     {
         base.DisplayEndingMessage();
     }
-
     public void Run()
     {
         
@@ -32,12 +28,9 @@ class ListingActivity : Activity
         {
             Console.Write("* ");
             string answer = Console.ReadLine();
-
             answers.Add(answer);
-
             Thread.Sleep(200);
         }
-
         Console.WriteLine("Activity completed!");
         DisplayEndingMessage();
     }
