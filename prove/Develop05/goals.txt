@@ -1,3 +1,3 @@
-Go to the temple,Go to the temple,100,0,2,1000
-Read the scriptures,Read,10,0
-SAy my prayers,Pray,10,0
+Go on a mission,Go on a mission,1000,1
+Read the scriptures,Read the scriptures every day,10,0
+Go to the temple,Go to the temple,10,1,3,1000
