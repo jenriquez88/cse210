@@ -1,6 +1,10 @@
+using System.Runtime.CompilerServices;
+
 public class SimpleGoal : Goal
 {
     public bool _isComplete;
+
+
 
     public SimpleGoal(string name, string description, int points) : base(name, description, points)
     {
@@ -19,11 +23,11 @@ public class SimpleGoal : Goal
 
     public override string GetDetailsString()
     {
-        return $"[{(_isComplete ? "X" : " ")}] {_shortName}: {_description}";
+        return $"[{(_isComplete ? "X" : " ")}] {ShortName}: {Description}";
     }
 
     public override string GetStringRepresentation()
     {
-        return $"{_shortName},{_description},{_points},{(_isComplete ? 1 : 0)}";
+        return $"{ShortName},{Description},{Points},{(_isComplete ? 1 : 0)}";
     }
 }

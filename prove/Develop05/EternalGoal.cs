@@ -6,21 +6,21 @@ public class EternalGoal : Goal
 
     public override void RecordEvent()
     {
-        // Eternal goals are always "completed" when recorded
+
     }
 
     public override bool IsComplete()
     {
-        return false; // Eternal goals are never complete
+        return false;
     }
 
     public override string GetDetailsString()
     {
-        return $"[ ] {_shortName}: {_description}";
+        return $"[ ] {ShortName}: {Description}";
     }
 
     public override string GetStringRepresentation()
     {
-        return $"{_shortName},{_description},{_points},0"; // Eternal goals are never complete
+        return $"{ShortName},{Description},{Points},0";
     }
 }

@@ -3,18 +3,23 @@ public class GoalManager
     protected List<Goal> _goals;
     protected int _score;
 
+
     public GoalManager()
     {
         _goals = new List<Goal>();
         _score = 0;
     }
 
+
     public void Start()
     {
-        // Main menu loop
+        Console.WriteLine("");
+        Console.WriteLine("Welcome to Eternal Quest. A goal tracker game");
+
         bool exit = false;
         while (!exit)
         {
+
             Console.WriteLine("1. Display Player Info");
             Console.WriteLine("2. List Goal Names");
             Console.WriteLine("3. List Goal Details");
@@ -23,9 +28,13 @@ public class GoalManager
             Console.WriteLine("6. Save Goals");
             Console.WriteLine("7. Load Goals");
             Console.WriteLine("8. Exit");
+            Console.WriteLine("");
+            
+            
 
             Console.Write("Enter your choice: ");
             int choice = int.Parse(Console.ReadLine());
+            Console.Write("");
 
             switch (choice)
             {
@@ -159,38 +168,53 @@ public class GoalManager
         Console.WriteLine("Goals saved successfully.");
     }
 
-    public void LoadGoals()
+public void LoadGoals()
+{
+    _goals.Clear();
+    using (StreamReader reader = new StreamReader("goals.txt"))
     {
-        _goals.Clear();
-        using (StreamReader reader = new StreamReader("goals.txt"))
+        string line;
+        while ((line = reader.ReadLine()) != null)
         {
-            string line;
-            while ((line = reader.ReadLine()) != null)
+            string[] parts = line.Split(',');   
+            if (parts.Length < 10)
             {
-                string[] parts = line.Split(',');
-                string name = parts[0];
-                string description = parts[1];
-                int points = int.Parse(parts[2]);
-                int amountCompleted = int.Parse(parts[3]);
-                int target = int.Parse(parts[4]);
-                int bonus = int.Parse(parts[5]);
+                Console.WriteLine($"* {line}");
+                continue; 
+            }
 
-                if (target > 0)
+            string name = parts[0];
+            string description = parts[1];
+            int points;
+            int amountCompleted;
+            int target;
+            int bonus;
+
+            if (!int.TryParse(parts[2], out points) ||
+                !int.TryParse(parts[3], out amountCompleted) ||
+                !int.TryParse(parts[4], out target) ||
+                !int.TryParse(parts[5], out bonus))
+            {
+                Console.WriteLine($"Error parsing data in line: {line}");
+                continue; 
+            }
+
+            if (target > 0)
+            {
+                _goals.Add(new ChecklistGoal(name, description, points, target, bonus)
                 {
-                    _goals.Add(new ChecklistGoal(name, description, points, target, bonus)
-                    {
-                        _amountCompleted = amountCompleted
-                    });
-                }
-                else
+                    _amountCompleted = amountCompleted
+                });
+            }
+            else
+            {
+                _goals.Add(new SimpleGoal(name, description, points)
                 {
-                    _goals.Add(new SimpleGoal(name, description, points)
-                    {
-                        _isComplete = amountCompleted == 1
-                    });
-                }
+                    _isComplete = amountCompleted == 1
+                });
             }
         }
-        Console.WriteLine("Goals loaded successfully.");
     }
+    Console.WriteLine("Goals loaded successfully.");
+}
 }

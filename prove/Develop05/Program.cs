@@ -8,5 +8,6 @@ class Program
     {
         GoalManager manager = new GoalManager();
         manager.Start();
+        
     }
 }

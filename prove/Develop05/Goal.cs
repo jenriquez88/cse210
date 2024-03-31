@@ -1,8 +1,8 @@
 public abstract class Goal
 {
-    public string _shortName;
-    public string _description;
-    public int _points;
+    private string _shortName;
+    private string _description;
+    private int _points;
 
     public string ShortName { get => _shortName; }
     public string Description { get => _description; }
